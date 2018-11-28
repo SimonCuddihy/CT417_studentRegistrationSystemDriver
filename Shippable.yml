@@ -1,9 +1,6 @@
 language: java
 jdk: oraclejdk8
 
-build:
-    ci:
-        - shippable_retry mvn install
 after_success:
   - mvn assembly:single
   - java -jar C:\Users\User\Documents\NetBeansProjects\CT417_studentRegistrationSystemDriver\target\CT417_studentRegistrationSystemDriver-1.0-SNAPSHOT-jar-with-dependencies.jar
