@@ -75,58 +75,10 @@ public class Driver {
 
         for(Student s : Students) {
             System.out.println(
-                    "Student Details:\n----------------\n" + s +
-                    "\nCourse Details: " + s.getCourse() +
-                    "\nModules: " + s.getModules() + "\n"
-            );
+                    "Student Information:\n-----------------------\n" + s +
+                    "\n\nCourse:\n" + s.getCourse() +
+                    "\n\nModules:\n" + s.getModules() + 
+                    "\n-----------------------\n");
         }
-        
-//        createCourse(EEEStudents, EEEModules, EEE);
-//        createCourse(ECEStudents, ECEModules, ECE);
-//        createCourse(ITStudents, ITModules, IT);
-//
-//        printoutCourseProgrammeStudents(ECEStudents);
-//        printoutCourseProgrammeStudents(EEEStudents);
-//        printoutCourseProgrammeStudents(ITStudents);
-//    }
-//
-//    public static void createCourse(ArrayList<Student> students, ArrayList<Module> modules, Course course) {
-//        for (Module module : modules) {
-//            module.addStudents(students);
-//        }
-//        for(Student student : students) {
-//            student.addStudentocourse(course);
-//        }
-//    }
-//
-//    public static void printoutCourseProgrammeStudents(ArrayList<Student> stu) {
-//        for(Student student : stu) {
-//
-//            printStudent(student);
-//            Course course = student.getCourse();
-//            System.out.println("Course Programme: " + course.getCourseName());
-//            System.out.println("Modules:" + getModuleNames(course.getModules()));
-//            System.out.println();
-//        }
-//    }
-//
-//    public static void printStudent(Student stu) {
-//
-//        System.out.println("Name: " + stu.getName());
-//        System.out.println("Username: " + stu.getUsername());
-//        System.out.println("ID: " + stu.getID());
-//        System.out.println("DOB: " + stu.getDOB());
-//        System.out.println("Age: " + stu.getAge());
-//    }
-//
-//    public static String getModuleNames(ArrayList<Module> modules) {
-//        String listofmodules = "";
-//
-//        for (Module module : modules) {
-//            listofmodules = "" + listofmodules + module.getModuleName() + ", ";
-//        }
-//
-//        return listofmodules;
-//    }
 
     }}
