@@ -11,95 +11,122 @@ import com.mycompany.ct417_studentregistrationsystem.*;
 
 public class Driver {
 
+    static ArrayList<Student> EEEStudents = new ArrayList<Student>();
+    static ArrayList<Student> ECEStudents = new ArrayList<Student>();
+    static ArrayList<Student> ITStudents = new ArrayList<Student>();
+    static ArrayList<Student> Students = new ArrayList<Student>();
+    static ArrayList<Module> EEEModules = new ArrayList<Module>();
+    static ArrayList<Module> ECEModules = new ArrayList<Module>();
+    static ArrayList<Module> ITModules = new ArrayList<Module>();
+    
     public static void main(String[] args) {
         // TODO Auto-generated method stub
 
-        ArrayList<Student> EEEStudents = new ArrayList<>();
-        ArrayList<Student> ECEStudents = new ArrayList<>();
+       
+        Student studentsample = new Student("Simon Cuddihy", 24, new DateTime(1993, 11, 10, 0, 0, 0));
+        Student studentsample1 = new Student("Mark Twain", 23, new DateTime(1993, 12, 12, 0, 0, 0));
+        Student studentsample2 = new Student("John Sample", 22, new DateTime(1994, 12, 12, 0, 0, 0));
+        ECEStudents.add(studentsample);
+        EEEStudents.add(studentsample1);
+        ITStudents.add(studentsample2);
+       
+        
+        Students.addAll(ECEStudents);
+        Students.addAll(EEEStudents);
+        Students.addAll(ITStudents);
+        
+        Module SE = new Module("Software Engineering");
+        Module ML = new Module("Machine Learning & Data Mining");
+        Module SoC = new Module("System on Chip");
+        Module DSP = new Module("Digital Signal Processing");
+        Module PE = new Module("Power Electronics");
+        Module PS = new Module("Power Systems");
+        Module AI = new Module("Artificial Intelligence");
+        Module CRY = new Module("Cryptography");
 
-        for (int i = 0; i < 3; i++) {
-            Student studentsample = new Student("Simon Cuddihy", 24, new DateTime(1993, 11, 10, 0, 0, 0), 12456772);
-            ECEStudents.add(studentsample);
-        }
-
-        for (int i = 0; i < 3; i++) {
-            Student studentsample = new Student("Mark Twain", 23, new DateTime(1994, 3, 9, 0, 0, 0), 13456772);
-            EEEStudents.add(studentsample);
-        }
-
-        Module SoftwareEngineering = new Module("Software Engineering", "CT417", ECEStudents);
-        Module MachineLearning = new Module("Machine Learning & Data Mining", "CT475", ECEStudents);
-        Module SoC = new Module("System on Chip", "EE45", ECEStudents);
-        Module DSP = new Module("Digital Signal Processing", "EE445", ECEStudents);
-        Module PowerElectronics = new Module("Power Electronics", "EE457", EEEStudents);
-        Module PowerSystems = new Module("Power Systems", "EE456", EEEStudents);
-
-        ArrayList<Module> ECEModules = new ArrayList<>();
-        ArrayList<Module> EEEModules = new ArrayList<>();
-
-        ECEModules.add(SoftwareEngineering);
-        ECEModules.add(MachineLearning);
+        ECEModules.add(SE);
+        ECEModules.add(ML);
         ECEModules.add(DSP);
         ECEModules.add(SoC);
-
         EEEModules.add(DSP);
         EEEModules.add(SoC);
-        EEEModules.add(PowerSystems);
-        EEEModules.add(PowerElectronics);
+        EEEModules.add(PS);
+        EEEModules.add(PE);
+        ITModules.add(CRY);
+        ITModules.add(ML);
+        ITModules.add(AI);
+        ITModules.add(SE);
 
         DateTime startDate = new DateTime(2014, 9, 01, 0, 0, 0);
         DateTime endDate = new DateTime(2018, 8, 30, 0, 0, 0);
 
-        Course ECE;
-        ECE = new Course("Electronic and Computer Engineering", ECEModules, startDate, endDate);
+        Course ECE = new Course("Electronic & Computer Engineering", "BP", startDate, endDate);
+        ECE.setModules(ECEModules);
+        
+        Course EEE = new Course("Electronic & Electrical Engineering", "BE", startDate, endDate);
+        EEE.setModules(EEEModules);
+        
+        Course IT = new Course("Information Technology", "IT", startDate, endDate);
+        IT.setModules(ITModules);
+        
+        for(Student s : ECEStudents) ECE.registerStudent(s);
+        for(Student s : EEEStudents) EEE.registerStudent(s);
+        for(Student s : ITStudents) IT.registerStudent(s);
 
-        Course EEE;
-        EEE = new Course("Electronic and Electrical Engineering", EEEModules, startDate, endDate);
-
-        createCourse(EEEStudents, EEEModules, EEE);
-        createCourse(ECEStudents, ECEModules, ECE);
-
-        printoutCourseProgrammeStudents(ECEStudents);
-        printoutCourseProgrammeStudents(ECEStudents);
-    }
-
-    public static void createCourse(ArrayList<Student> students, ArrayList<Module> modules, Course course) {
-        for (Module module : modules) {
-            module.addStudents(students);
+        for(Student s : Students) {
+            System.out.println(
+                    "Student Details:\n----------------\n" + s +
+                    "\nCourse Details: " + s.getCourse() +
+                    "\nModules: " + s.getModules() + "\n"
+            );
         }
-        for(Student student : students) {
-            student.addStudentocourse(course);
-        }
-    }
+        
+//        createCourse(EEEStudents, EEEModules, EEE);
+//        createCourse(ECEStudents, ECEModules, ECE);
+//        createCourse(ITStudents, ITModules, IT);
+//
+//        printoutCourseProgrammeStudents(ECEStudents);
+//        printoutCourseProgrammeStudents(EEEStudents);
+//        printoutCourseProgrammeStudents(ITStudents);
+//    }
+//
+//    public static void createCourse(ArrayList<Student> students, ArrayList<Module> modules, Course course) {
+//        for (Module module : modules) {
+//            module.addStudents(students);
+//        }
+//        for(Student student : students) {
+//            student.addStudentocourse(course);
+//        }
+//    }
+//
+//    public static void printoutCourseProgrammeStudents(ArrayList<Student> stu) {
+//        for(Student student : stu) {
+//
+//            printStudent(student);
+//            Course course = student.getCourse();
+//            System.out.println("Course Programme: " + course.getCourseName());
+//            System.out.println("Modules:" + getModuleNames(course.getModules()));
+//            System.out.println();
+//        }
+//    }
+//
+//    public static void printStudent(Student stu) {
+//
+//        System.out.println("Name: " + stu.getName());
+//        System.out.println("Username: " + stu.getUsername());
+//        System.out.println("ID: " + stu.getID());
+//        System.out.println("DOB: " + stu.getDOB());
+//        System.out.println("Age: " + stu.getAge());
+//    }
+//
+//    public static String getModuleNames(ArrayList<Module> modules) {
+//        String listofmodules = "";
+//
+//        for (Module module : modules) {
+//            listofmodules = "" + listofmodules + module.getModuleName() + ", ";
+//        }
+//
+//        return listofmodules;
+//    }
 
-    public static void printoutCourseProgrammeStudents(ArrayList<Student> stu) {
-        for(Student student : stu) {
-
-            printStudent(student);
-            Course course = student.getCourse();
-            System.out.println("Course Programme: " + course.getCourseName());
-            System.out.println("Modules:" + getModuleNames(course.getModules()));
-            System.out.println();
-        }
-    }
-
-    public static void printStudent(Student stu) {
-
-        System.out.println("Name: " + stu.getName());
-        System.out.println("Username: " + stu.getUsername());
-        System.out.println("Id: " + stu.getID());
-        System.out.println("DOB: " + stu.getDOB());
-        System.out.println("Age: " + stu.getAge());
-    }
-
-    public static String getModuleNames(ArrayList<Module> modules) {
-        String listofmodules = "";
-
-        for (Module module : modules) {
-            listofmodules = "" + listofmodules + module.getModuleName() + " ";
-        }
-
-        return listofmodules;
-    }
-
-}
+    }}
